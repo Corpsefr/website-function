@@ -748,7 +748,7 @@ function NewsletterBar() {
     if (!email || !email.includes("@")) return;
     setStatus("loading");
     try {
-      const res = await fetch(https://formspree.io/f/mykaylze", {
+      const res = await fetch("https://formspree.io/f/mykaylze", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({ email }),
