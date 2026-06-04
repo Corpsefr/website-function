@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import {
   BarChart, Bar, LineChart, Line, AreaChart, Area,
