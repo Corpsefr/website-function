@@ -668,6 +668,173 @@ function DonatePage() {
   );
 }
 
+// --- MY STORY PAGE ---
+function MyStoryPage() {
+  return (
+    <div style={{ padding: "clamp(2rem,6vw,4rem)", maxWidth: 800, margin: "0 auto" }}>
+      <SectionHead title="My Story" sub="A personal account of addiction, recovery, and why this website exists." color={C.warning} />
+
+      {/* Intro banner */}
+      <div style={{
+        background: "linear-gradient(135deg,rgba(255,190,11,0.1) 0%,rgba(6,214,160,0.08) 100%)",
+        border: "1px solid rgba(255,190,11,0.25)", borderRadius: 16,
+        padding: "2rem", marginBottom: "2.5rem", display: "flex", gap: "1.5rem", alignItems: "center", flexWrap: "wrap",
+      }}>
+        <div style={{
+          width: 72, height: 72, borderRadius: "50%", flexShrink: 0,
+          background: "linear-gradient(135deg,#06d6a0,#ffbe0b)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: "2rem", fontWeight: 900, color: "#07090f",
+          fontFamily: "'Playfair Display', serif",
+        }}>B</div>
+        <div>
+          <h3 style={{ color: C.text, margin: "0 0 0.3rem", fontFamily: "'Playfair Display', serif", fontSize: "1.4rem" }}>Ben</h3>
+          <p style={{ color: C.muted, margin: 0, fontSize: "0.9rem" }}>Bay Area, California &nbsp;·&nbsp; Recovered &nbsp;·&nbsp; Advocate</p>
+        </div>
+      </div>
+
+      {/* Story sections */}
+      {[
+        {
+          icon: "🌱", color: C.secondary, title: "How It Started",
+          body: `I was 12 when I first came across it. I wasnt even looking for it, it just kind of showed up. I remember thinking it was no big deal, just something I stumbled on and that was that. Nobody in my life was talking about this stuff so I genuinely had no idea what I was getting myself into.
+
+But it kept pulling me back. A few weeks turned into months and by the time I was 13 it already felt like something I couldnt just put down. I would go a few days without it and feel good about myself and then just fall right back into it. That kept happening over and over and I started to feel really bad about myself because of it.`,
+        },
+        {
+          icon: "🌊", color: C.accent, title: "What It Did To Me",
+          body: `Honestly the effects snuck up on me. I didnt notice right away. But after a while I could tell something was off. I was more in my head, more anxious, had a harder time focusing in class. Talking to people felt awkward in a way it never used to. Eye contact felt weird. I just felt kind of checked out from everything around me.
+
+The thing that got to me the most was the shame. It was just always there in the background. And because I couldnt talk to anyone about it I carried it around by myself. I genuinely thought I was the only one dealing with this. Like everyone else had it together and I was the only one struggling with something this embarrassing.`,
+        },
+        {
+          icon: "⚡", color: C.warning, title: "The Turning Point",
+          body: `What actually changed things for me was finding out the science behind it. I started reading about what it actually does to your brain, the dopamine stuff, the way it rewires how you respond to things. And something about that just clicked for me. It wasnt that I was weak or a bad person. My brain was just reacting the way any brain would react to that kind of constant overstimulation.
+
+That took so much weight off. I started actually doing something about it after that. I put filters on my phone and laptop, started working out, started writing stuff down when I felt the urge to relapse. I found some online communities where other guys were going through the same thing and that helped a lot too. Just knowing other people understood it.`,
+        },
+        {
+          icon: "🌟", color: C.primary, title: "Where I Am Now",
+          body: `It wasnt easy and I did relapse a few times. I wont pretend it was this clean straight line to being fixed. But over time things got better. The urges got less intense. My focus came back. I started actually caring about stuff again, school, hanging out with friends, just being a normal person without this thing weighing on me all the time.
+
+I made this site because when I was going through the worst of it I couldnt find anything that just laid it all out honestly. All the research is buried in papers nobody reads and the conversations online are scattered everywhere. I wanted to put it all in one place in a way that actually makes sense to a regular person. If youre reading this and you relate to any of it, just know it does get better. It really does.`,
+        },
+      ].map(({ icon, color, title, body }, i) => (
+        <div key={i} style={{ marginBottom: "2.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+            <div style={{
+              width: 38, height: 38, borderRadius: "50%",
+              background: `rgba(${color === C.primary ? "6,214,160" : color === C.secondary ? "58,134,255" : color === C.accent ? "255,0,110" : "255,190,11"},0.15)`,
+              display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.2rem", flexShrink: 0,
+            }}>{icon}</div>
+            <h3 style={{ color, margin: 0, fontFamily: "'Playfair Display', serif", fontSize: "1.25rem", fontWeight: 700 }}>{title}</h3>
+          </div>
+          {body.split("\n\n").map((para, j) => (
+            <p key={j} style={{ color: C.muted, lineHeight: 1.85, fontSize: "0.97rem", marginBottom: "1rem" }}>{para}</p>
+          ))}
+          {i < 3 && <div style={{ borderBottom: `1px solid ${C.border}`, marginTop: "1.5rem" }} />}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// --- NEWSLETTER SIGNUP ---
+function NewsletterBar() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle, loading, success, error
+
+  const handleSubmit = async () => {
+    if (!email || !email.includes("@")) return;
+    setStatus("loading");
+    try {
+      const res = await fetch(https://formspree.io/f/mykaylze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div style={{
+      background: "linear-gradient(135deg,rgba(6,214,160,0.08) 0%,rgba(58,134,255,0.07) 100%)",
+      borderTop: `1px solid rgba(6,214,160,0.15)`,
+      borderBottom: `1px solid rgba(6,214,160,0.15)`,
+      padding: "2.5rem clamp(2rem,6vw,4rem)",
+      textAlign: "center",
+    }}>
+      <h3 style={{
+        color: C.text, fontFamily: "'Playfair Display', serif",
+        fontSize: "1.4rem", margin: "0 0 0.5rem",
+      }}>Stay in the Loop</h3>
+      <p style={{ color: C.muted, fontSize: "0.9rem", margin: "0 0 1.5rem", maxWidth: 460, marginLeft: "auto", marginRight: "auto", lineHeight: 1.6 }}>
+        Get updates on new resources, research, and recovery tools. No spam, just stuff that actually helps.
+      </p>
+
+      {status === "success" ? (
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: "0.6rem",
+          background: "rgba(6,214,160,0.12)", border: "1px solid rgba(6,214,160,0.3)",
+          borderRadius: 100, padding: "0.7rem 1.5rem", color: C.primary, fontWeight: 600, fontSize: "0.9rem",
+        }}>
+          <span>✓</span> You are subscribed. Thanks for joining!
+        </div>
+      ) : (
+        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", maxWidth: 480, margin: "0 auto" }}>
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleSubmit()}
+            style={{
+              flex: 1, minWidth: 200,
+              background: "rgba(255,255,255,0.05)",
+              border: `1px solid ${C.border}`,
+              borderRadius: 8, padding: "0.75rem 1rem",
+              color: C.text, fontFamily: "inherit", fontSize: "0.9rem",
+              outline: "none",
+            }}
+          />
+          <button
+            onClick={handleSubmit}
+            disabled={status === "loading"}
+            style={{
+              background: C.primary, color: "#07090f",
+              border: "none", borderRadius: 8,
+              padding: "0.75rem 1.5rem",
+              fontFamily: "inherit", fontWeight: 700,
+              fontSize: "0.9rem", cursor: "pointer",
+              opacity: status === "loading" ? 0.7 : 1,
+            }}
+          >
+            {status === "loading" ? "Subscribing..." : "Subscribe"}
+          </button>
+        </div>
+      )}
+
+      {status === "error" && (
+        <p style={{ color: C.accent, fontSize: "0.8rem", marginTop: "0.75rem" }}>
+          Something went wrong. Try again or email us directly.
+        </p>
+      )}
+
+      <p style={{ color: C.muted, fontSize: "0.72rem", marginTop: "1rem", opacity: 0.7 }}>
+        By subscribing you agree to receive emails from this site. Unsubscribe anytime.
+      </p>
+    </div>
+  );
+}
+
 // --- NAVBAR & APP ---
 const NAV = [
   { id: "home", label: "Home" },
@@ -675,6 +842,7 @@ const NAV = [
   { id: "statistics", label: "Statistics" },
   { id: "relationships", label: "Relationships" },
   { id: "recovery", label: "Recovery" },
+  { id: "mystory", label: "My Story" },
   { id: "help", label: "Get Help" },
   { id: "donate", label: "❤️ Donate" },
 ];
@@ -683,7 +851,7 @@ export default function App() {
   const [page, setPage] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const pages = { home: HomePage, science: SciencePage, statistics: StatisticsPage, relationships: RelationshipsPage, recovery: RecoveryPage, help: HelpPage, donate: DonatePage };
+  const pages = { home: HomePage, science: SciencePage, statistics: StatisticsPage, relationships: RelationshipsPage, recovery: RecoveryPage, mystory: MyStoryPage, help: HelpPage, donate: DonatePage };
   const PageComponent = pages[page] || HomePage;
 
   return (
@@ -730,6 +898,7 @@ export default function App() {
           <PageComponent setPage={setPage} />
         </main>
 
+        <NewsletterBar />
         <footer style={{ borderTop: `1px solid ${C.border}`, padding: "2rem clamp(2rem,6vw,4rem)", textAlign: "center" }}>
           <p style={{ color: C.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
             This website is for educational and awareness purposes only. Content is based on peer-reviewed research and clinical literature.<br />
