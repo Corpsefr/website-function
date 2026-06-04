@@ -1,8 +1,7 @@
-"use client";
-
+"use client"
 import { useState } from "react";
 import {
-  BarChart, Bar, AreaChart, Area,
+  BarChart, Bar, LineChart, Line, AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer, Cell, PieChart, Pie
 } from "recharts";
@@ -24,16 +23,16 @@ const ttStyle = {
 // --- DATA ---
 const ageExposureData = [
   { age: "Under 10", boys: 15, girls: 8 },
-  { age: "10-12", boys: 42, girls: 24 },
-  { age: "13-15", boys: 78, girls: 45 },
-  { age: "16-18", boys: 93, girls: 62 },
+  { age: "10–12", boys: 42, girls: 24 },
+  { age: "13–15", boys: 78, girls: 45 },
+  { age: "16–18", boys: 93, girls: 62 },
 ];
 
 const prevalenceData = [
-  { group: "18-24", weekly: 46, daily: 18 },
-  { group: "25-34", weekly: 38, daily: 14 },
-  { group: "35-44", weekly: 28, daily: 9 },
-  { group: "45-54", weekly: 18, daily: 6 },
+  { group: "18–24", weekly: 46, daily: 18 },
+  { group: "25–34", weekly: 38, daily: 14 },
+  { group: "35–44", weekly: 28, daily: 9 },
+  { group: "45–54", weekly: 18, daily: 6 },
   { group: "55+", weekly: 11, daily: 4 },
 ];
 
@@ -76,18 +75,18 @@ const pieData = [
 ];
 
 // --- SHARED COMPONENTS ---
-const SectionHead = ({ title, sub, color = C.primary }: { title: string; sub?: string; color?: string }) => (
+const SectionHead = ({ title, sub, color = C.primary }) => (
   <div style={{ marginBottom: "2.5rem" }}>
     <div style={{ width: 36, height: 3, background: color, borderRadius: 2, marginBottom: "1rem" }} />
     <h2 style={{
-      fontFamily: "var(--font-playfair), serif", fontWeight: 700,
+      fontFamily: "'Playfair Display', serif", fontWeight: 700,
       fontSize: "clamp(1.6rem,4vw,2.3rem)", color: C.text, margin: "0 0 0.75rem", lineHeight: 1.15,
     }}>{title}</h2>
     {sub && <p style={{ color: C.muted, fontSize: "1rem", lineHeight: 1.65, maxWidth: 620, margin: 0 }}>{sub}</p>}
   </div>
 );
 
-const Card = ({ children, style = {}, accent }: { children: React.ReactNode; style?: React.CSSProperties; accent?: string }) => (
+const Card = ({ children, style = {}, accent }) => (
   <div style={{
     background: C.bgCard, borderRadius: 12, padding: "1.5rem",
     border: `1px solid ${C.border}`,
@@ -96,15 +95,15 @@ const Card = ({ children, style = {}, accent }: { children: React.ReactNode; sty
   }}>{children}</div>
 );
 
-const StatCard = ({ number, label, color = C.primary, note }: { number: string; label: string; color?: string; note?: string }) => (
+const StatCard = ({ number, label, color = C.primary, note }) => (
   <Card accent={color}>
-    <div style={{ fontSize: "2rem", fontWeight: 800, color, fontFamily: "var(--font-playfair), serif", lineHeight: 1 }}>{number}</div>
+    <div style={{ fontSize: "2rem", fontWeight: 800, color, fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>{number}</div>
     <div style={{ color: C.text, fontSize: "0.9rem", marginTop: "0.5rem", fontWeight: 500 }}>{label}</div>
     {note && <div style={{ color: C.muted, fontSize: "0.72rem", marginTop: "0.4rem" }}>{note}</div>}
   </Card>
 );
 
-const ChartCard = ({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) => (
+const ChartCard = ({ title, note, children }) => (
   <Card>
     <h3 style={{ color: C.text, margin: "0 0 0.3rem", fontSize: "1.05rem", fontWeight: 700 }}>{title}</h3>
     {note && <p style={{ color: C.muted, fontSize: "0.76rem", marginBottom: "1.2rem", margin: "0 0 1.2rem" }}>{note}</p>}
@@ -112,13 +111,13 @@ const ChartCard = ({ title, note, children }: { title: string; note?: string; ch
   </Card>
 );
 
-const Dot = ({ color }: { color: string }) => (
+const Dot = ({ color }) => (
   <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0, marginTop: "0.42rem" }} />
 );
 
 // --- PAGES ---
 
-function HomePage({ setPage }: { setPage: (page: string) => void }) {
+function HomePage({ setPage }) {
   return (
     <div>
       {/* HERO */}
@@ -137,15 +136,15 @@ function HomePage({ setPage }: { setPage: (page: string) => void }) {
             border: "1px solid rgba(6,214,160,0.3)", padding: "0.3rem 1rem",
             borderRadius: 100, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.09em",
             textTransform: "uppercase", marginBottom: "1.5rem",
-          }}>Evidence-based awareness</div>
+          }}>Evidence-Based Awareness</div>
           <h1 style={{
-            fontFamily: "var(--font-playfair), serif", fontWeight: 900,
+            fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.4rem,7vw,4.4rem)", color: C.text,
             lineHeight: 1.08, margin: "0 0 1.5rem",
           }}>
-            Porn addiction:<br />
+            Porn Addiction:<br />
             <span style={{ background: "linear-gradient(135deg,#06d6a0,#3a86ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              The hidden epidemic
+              The Hidden Epidemic
             </span>
           </h1>
           <p style={{ color: C.muted, fontSize: "clamp(1rem,2.5vw,1.12rem)", lineHeight: 1.75, maxWidth: 580, marginBottom: "2rem" }}>
@@ -157,25 +156,25 @@ function HomePage({ setPage }: { setPage: (page: string) => void }) {
               background: C.primary, color: "#07090f", padding: "0.85rem 2rem",
               border: "none", borderRadius: 8, fontWeight: 700, fontSize: "0.95rem",
               cursor: "pointer", fontFamily: "inherit",
-            }}>Explore the science</button>
+            }}>Explore The Science</button>
             <button onClick={() => setPage("recovery")} style={{
               background: "transparent", color: C.text, padding: "0.85rem 2rem",
               border: `1px solid ${C.border}`, borderRadius: 8, fontWeight: 600,
               fontSize: "0.95rem", cursor: "pointer", fontFamily: "inherit",
-            }}>Path to recovery</button>
+            }}>Path to Recovery</button>
           </div>
         </div>
       </div>
 
       {/* STATS */}
       <div style={{ padding: "clamp(2rem,6vw,4rem)", borderTop: `1px solid ${C.border}` }}>
-        <SectionHead title="The numbers don&apos;t lie" sub="Research-backed statistics on the scale and impact of pornography addiction." />
+        <SectionHead title="The Numbers Don't Lie" sub="Research-backed statistics on the scale and impact of pornography addiction." />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(210px,1fr))", gap: "1rem" }}>
           <StatCard number="200M+" label="Pornhub visits per day globally" color={C.accent} note="Pornhub Insights, 2023" />
           <StatCard number="40M" label="Americans are regular porn users" color={C.primary} note="AAP, 2023" />
-          <StatCard number="11-12" label="Average age of first exposure" color={C.warning} note="Common Sense Media, 2022" />
+          <StatCard number="11–12" label="Average age of first exposure" color={C.warning} note="Common Sense Media, 2022" />
           <StatCard number="56%" label="Divorces cite porn as a major factor" color={C.secondary} note="AAMFT Clinical Study" />
-          <StatCard number="28%" label="Adults 18-24 report compulsive use" color={C.purple} note="Journal of Sex Research, 2022" />
+          <StatCard number="28%" label="Adults 18–24 report compulsive use" color={C.purple} note="Journal of Sex Research, 2022" />
           <StatCard number="$97B" label="Global porn industry revenue/year" color={C.accent} note="KPMG Industry Report, 2022" />
         </div>
       </div>
@@ -184,7 +183,7 @@ function HomePage({ setPage }: { setPage: (page: string) => void }) {
       <div style={{ padding: "clamp(2rem,6vw,4rem)", borderTop: `1px solid ${C.border}` }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: "2rem" }}>
           <div>
-            <SectionHead title="What is porn addiction?" color={C.secondary} />
+            <SectionHead title="What Is Porn Addiction?" color={C.secondary} />
             <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.93rem", marginBottom: "1rem" }}>
               Pornography addiction is a behavioral addiction characterized by compulsive consumption of pornographic material
               despite significant negative consequences. Like substance addictions, it involves the same neural reward pathways
@@ -197,7 +196,7 @@ function HomePage({ setPage }: { setPage: (page: string) => void }) {
             </p>
           </div>
           <div>
-            <SectionHead title="Diagnostic signs" color={C.warning} />
+            <SectionHead title="Diagnostic Signs" color={C.warning} />
             {[
               "Spending increasing amounts of time viewing pornography",
               "Failed attempts to cut back or stop",
@@ -218,24 +217,25 @@ function HomePage({ setPage }: { setPage: (page: string) => void }) {
 
       {/* TOPIC CARDS */}
       <div style={{ padding: "clamp(2rem,6vw,4rem)", borderTop: `1px solid ${C.border}` }}>
-        <SectionHead title="Explore all topics" />
+        <SectionHead title="Explore All Topics" />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))", gap: "1.2rem" }}>
           {[
-            { id: "science", title: "The brain science", desc: "Neurological effects, dopamine pathways, and how porn rewires the brain.", color: C.primary },
-            { id: "statistics", title: "Statistics & data", desc: "Charts and research on usage patterns, demographics, and impact.", color: C.secondary },
-            { id: "relationships", title: "Relationships", desc: "How pornography addiction damages intimacy, trust, and connection.", color: C.accent },
-            { id: "recovery", title: "Recovery", desc: "The science of healing, recovery timelines, and actionable steps.", color: C.warning },
-            { id: "help", title: "Get help", desc: "Resources, hotlines, therapists, and community support.", color: C.purple },
-            { id: "donate", title: "Support our work", desc: "Help fund awareness campaigns and support resources.", color: C.primary },
-          ].map(({ id, title, desc, color }) => (
+            { id: "science", title: "The Brain Science", desc: "Neurological effects, dopamine pathways, and how porn rewires the brain.", color: C.primary, icon: "🧠" },
+            { id: "statistics", title: "Statistics & Data", desc: "Charts and research on usage patterns, demographics, and impact.", color: C.secondary, icon: "📊" },
+            { id: "relationships", title: "Relationships", desc: "How pornography addiction damages intimacy, trust, and connection.", color: C.accent, icon: "💔" },
+            { id: "recovery", title: "Recovery", desc: "The science of healing, recovery timelines, and actionable steps.", color: C.warning, icon: "🌱" },
+            { id: "help", title: "Get Help", desc: "Resources, hotlines, therapists, and community support.", color: C.purple, icon: "🤝" },
+            { id: "donate", title: "Support Our Work", desc: "Help fund awareness campaigns and support resources.", color: C.primary, icon: "❤️" },
+          ].map(({ id, title, desc, color, icon }) => (
             <div key={id} onClick={() => setPage(id)} style={{
               background: C.bgCard, border: `1px solid ${C.border}`,
               borderTop: `3px solid ${color}`, borderRadius: 12,
               padding: "1.5rem", cursor: "pointer", transition: "background 0.2s",
             }}
-              onMouseEnter={e => (e.currentTarget.style.background = C.bgCardHover)}
-              onMouseLeave={e => (e.currentTarget.style.background = C.bgCard)}
+              onMouseEnter={e => e.currentTarget.style.background = C.bgCardHover}
+              onMouseLeave={e => e.currentTarget.style.background = C.bgCard}
             >
+              <div style={{ fontSize: "1.9rem", marginBottom: "0.7rem" }}>{icon}</div>
               <h3 style={{ color: C.text, margin: "0 0 0.4rem", fontSize: "1rem", fontWeight: 700 }}>{title}</h3>
               <p style={{ color: C.muted, margin: 0, fontSize: "0.83rem", lineHeight: 1.5 }}>{desc}</p>
             </div>
@@ -250,17 +250,17 @@ function SciencePage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)" }}>
       <SectionHead
-        title="The brain science of porn addiction"
+        title="The Brain Science of Porn Addiction"
         sub="How repeated pornography use alters neural architecture, hijacks the reward system, and degrades cognitive function."
       />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(270px,1fr))", gap: "1.2rem", marginBottom: "3rem" }}>
         {[
-          { title: "Dopamine hijacking", color: C.primary, body: "Pornography triggers massive dopamine surges — up to 200% above baseline — in the nucleus accumbens (the brain's reward center). This artificially intense stimulation desensitizes dopamine receptors, requiring increasingly extreme content to achieve the same effect, mirroring tolerance seen in drug addiction." },
-          { title: "Prefrontal cortex shrinkage", color: C.secondary, body: "Neuroimaging studies (Kuhn & Gallinat, JAMA Psychiatry 2014) found that greater porn use correlated with reduced gray matter volume in the right caudate of the striatum and weaker prefrontal activation — the region governing impulse control, decision-making, and long-term planning." },
-          { title: "DeltaFosB accumulation", color: C.accent, body: "Compulsive behavior accumulates a protein called DeltaFosB in reward circuits. This sensitizes the brain to sexual cues while desensitizing it to natural rewards (food, exercise, social connection), fundamentally altering motivation and reward processing." },
-          { title: "Desensitization & escalation", color: C.warning, body: "As dopamine receptors downregulate, users experience anhedonia — inability to feel pleasure from everyday activities. This drives escalation to more extreme or taboo content not from genuine preference, but neurological necessity to generate the same dopamine response." },
-          { title: "Sensitization to cues", color: C.purple, body: "The brain creates powerful neural pathways associating pornography cues (devices, notifications, solitude) with dopamine release. These cue-induced cravings can persist for years into recovery — similar to why recovering drug users experience cravings from environmental triggers." },
-          { title: "Impaired pair bonding", color: C.primary, body: "Oxytocin — the bonding hormone released during intimacy — becomes conditioned to solo, screen-based experiences rather than real human connection. Over time this impairs the capacity for deep emotional and physical bonding with real partners." },
+          { title: "Dopamine Hijacking", color: C.primary, body: "Pornography triggers massive dopamine surges — up to 200% above baseline — in the nucleus accumbens (the brain's reward center). This artificially intense stimulation desensitizes dopamine receptors, requiring increasingly extreme content to achieve the same effect, mirroring tolerance seen in drug addiction." },
+          { title: "Prefrontal Cortex Shrinkage", color: C.secondary, body: "Neuroimaging studies (Kühn & Gallinat, JAMA Psychiatry 2014) found that greater porn use correlated with reduced gray matter volume in the right caudate of the striatum and weaker prefrontal activation — the region governing impulse control, decision-making, and long-term planning." },
+          { title: "DeltaFosB Accumulation", color: C.accent, body: "Compulsive behavior accumulates a protein called DeltaFosB in reward circuits. This sensitizes the brain to sexual cues while desensitizing it to natural rewards (food, exercise, social connection), fundamentally altering motivation and reward processing." },
+          { title: "Desensitization & Escalation", color: C.warning, body: "As dopamine receptors downregulate, users experience anhedonia — inability to feel pleasure from everyday activities. This drives escalation to more extreme or taboo content not from genuine preference, but neurological necessity to generate the same dopamine response." },
+          { title: "Sensitization to Cues", color: C.purple, body: "The brain creates powerful neural pathways associating pornography cues (devices, notifications, solitude) with dopamine release. These cue-induced cravings can persist for years into recovery — similar to why recovering drug users experience cravings from environmental triggers." },
+          { title: "Impaired Pair Bonding", color: C.primary, body: "Oxytocin — the bonding hormone released during intimacy — becomes conditioned to solo, screen-based experiences rather than real human connection. Over time this impairs the capacity for deep emotional and physical bonding with real partners." },
         ].map(({ title, color, body }) => (
           <Card key={title} accent={color}>
             <h3 style={{ color, margin: "0 0 0.7rem", fontSize: "1rem", fontWeight: 700 }}>{title}</h3>
@@ -269,7 +269,7 @@ function SciencePage() {
         ))}
       </div>
 
-      <ChartCard title="Brain region activity: Healthy vs. compulsive user" note="Normalized activation levels across key regions. Based on fMRI data: Kuhn et al. 2014; Laier et al. 2015.">
+      <ChartCard title="Brain Region Activity: Healthy vs. Compulsive User" note="Normalized activation levels across key regions. Based on fMRI data: Kühn et al. 2014; Laier et al. 2015.">
         <ResponsiveContainer width="100%" height={280}>
           <BarChart data={brainData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
@@ -277,14 +277,14 @@ function SciencePage() {
             <YAxis tick={{ fill: C.muted, fontSize: 10 }} domain={[0, 100]} />
             <Tooltip contentStyle={ttStyle} />
             <Legend wrapperStyle={{ color: C.muted, fontSize: "0.8rem" }} />
-            <Bar dataKey="healthy" name="Healthy brain" fill={C.primary} radius={[4, 4, 0, 0]} />
-            <Bar dataKey="addicted" name="Compulsive user" fill={C.accent} radius={[4, 4, 0, 0]} />
+            <Bar dataKey="healthy" name="Healthy Brain" fill={C.primary} radius={[4, 4, 0, 0]} />
+            <Bar dataKey="addicted" name="Compulsive User" fill={C.accent} radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </ChartCard>
 
       <div style={{ marginTop: "2rem" }}>
-        <ChartCard title="Porn addiction vs. substance addiction: Parallels">
+        <ChartCard title="Porn Addiction vs. Substance Addiction: Parallels">
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.855rem" }}>
               <thead>
@@ -302,7 +302,7 @@ function SciencePage() {
                   ["Brain structural changes", "✓", "✓", "✓", "✓"],
                   ["Cue-induced craving", "✓", "✓", "✓", "✓"],
                   ["Legal (adult)", "✗", "✗", "✓", "✓"],
-                  ["Physical withdrawal", "Severe", "Moderate", "Severe", "Mild-Mod"],
+                  ["Physical withdrawal", "Severe", "Moderate", "Severe", "Mild–Mod"],
                 ].map((row, i) => (
                   <tr key={i} style={{ borderBottom: `1px solid ${C.border}`, background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
                     <td style={{ color: C.text, padding: "0.7rem 0.6rem", fontWeight: 500 }}>{row[0]}</td>
@@ -324,12 +324,12 @@ function StatisticsPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)" }}>
       <SectionHead
-        title="Statistics & research data"
+        title="Statistics & Research Data"
         sub="Compiled from peer-reviewed journals, clinical studies, and demographic surveys."
         color={C.secondary}
       />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: "1.5rem", marginBottom: "2rem" }}>
-        <ChartCard title="Age of first exposure" note="% exposed by age group. Source: Common Sense Media 2022; Wolak et al. 2007">
+        <ChartCard title="Age of First Exposure" note="% exposed by age group. Source: Common Sense Media 2022; Wolak et al. 2007">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={ageExposureData}>
               <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
@@ -343,7 +343,7 @@ function StatisticsPage() {
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="Regular use by age group" note="% using weekly or daily. Source: Journal of Sex Research, 2022">
+        <ChartCard title="Regular Use by Age Group" note="% using weekly or daily. Source: Journal of Sex Research, 2022">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={prevalenceData}>
               <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
@@ -359,7 +359,7 @@ function StatisticsPage() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: "1.5rem", marginBottom: "2rem" }}>
-        <ChartCard title="Self-reported negative effects" note="Among those who identify as having problematic use. Source: YBOP compilation, 2021">
+        <ChartCard title="Self-Reported Negative Effects" note="Among those who identify as having problematic use. Source: YBOP compilation, 2021">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={effectsData} layout="vertical" margin={{ left: 130, right: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
@@ -373,10 +373,10 @@ function StatisticsPage() {
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="Distribution of reported effects" note="Proportional breakdown of primary negative effects reported">
+        <ChartCard title="Distribution of Reported Effects" note="Proportional breakdown of primary negative effects reported">
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
-              <Pie data={pieData} cx="50%" cy="50%" outerRadius={90} dataKey="value" nameKey="name" label={({ value }) => `${value}%`} labelLine={false} fontSize={10}>
+              <Pie data={pieData} cx="50%" cy="50%" outerRadius={90} dataKey="value" nameKey="name" label={({ name, value }) => `${value}%`} labelLine={false} fontSize={10}>
                 {pieData.map((_, i) => <Cell key={i} fill={CHART_COLORS[i]} />)}
               </Pie>
               <Tooltip contentStyle={ttStyle} />
@@ -386,23 +386,23 @@ function StatisticsPage() {
         </ChartCard>
       </div>
 
-      <ChartCard title="Key research studies" note="Peer-reviewed research on pornography addiction and its effects">
+      <ChartCard title="Key Research Studies" note="Peer-reviewed research on pornography addiction and its effects">
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${C.border}` }}>
-                {["Study", "Year", "Sample", "Key finding"].map(h => (
+                {["Study", "Year", "Sample", "Key Finding"].map(h => (
                   <th key={h} style={{ color: C.primary, padding: "0.75rem 0.6rem", textAlign: "left", fontWeight: 600 }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {[
-                ["Kuhn & Gallinat (JAMA Psychiatry)", "2014", "64 adults", "More porn use = less gray matter in reward striatum; weaker prefrontal connectivity"],
+                ["Kühn & Gallinat (JAMA Psychiatry)", "2014", "64 adults", "More porn use = less gray matter in reward striatum; weaker prefrontal connectivity"],
                 ["Voon et al. (PLOS ONE)", "2014", "19 CSB patients", "Porn activates same neural regions as drug cues; compulsive users show hypersensitivity"],
                 ["Laier, Pawlikowski & Brand", "2014", "28 males", "Cue-induced craving in porn addiction parallels craving in substance abuse"],
                 ["Sun et al. (Arch. Sex. Behav.)", "2016", "1,285 students", "Increasing consumption linked to more callous sexual attitudes and reduced partner intimacy"],
-                ["Perry & Whitehead", "2019", "15,000 adults", "Habitual porn users 3x more likely to report marital unhappiness over time"],
+                ["Perry & Whitehead", "2019", "15,000 adults", "Habitual porn users 3× more likely to report marital unhappiness over time"],
                 ["Dwulit & Rzymski (Meta-analysis)", "2019", "Multiple studies", "Pornography-induced erectile dysfunction (PIED) confirmed in healthy men under 40"],
               ].map((row, i) => (
                 <tr key={i} style={{ borderBottom: `1px solid ${C.border}`, background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.015)" }}>
@@ -424,21 +424,22 @@ function RelationshipsPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)" }}>
       <SectionHead
-        title="Impact on relationships"
+        title="Impact on Relationships"
         sub="Pornography addiction profoundly alters how users relate to partners, family, and the world around them."
         color={C.accent}
       />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(270px,1fr))", gap: "1.2rem", marginBottom: "3rem" }}>
         {[
-          { title: "Unrealistic expectations", color: C.accent, body: "Regular porn consumption creates distorted templates for sex and body image. Research (Sun et al., 2016) shows users develop increasingly unrealistic expectations of sexual performance and appearance, making real intimacy feel inadequate or disappointing by comparison." },
-          { title: "Emotional withdrawal", color: C.secondary, body: "Partners of porn users frequently report emotional unavailability, reduced affection, and a sense that their partner is 'elsewhere.' This emotional withdrawal mirrors patterns seen in partners of people with substance use disorders." },
-          { title: "Sexual dysfunction (PIED)", color: C.warning, body: "Pornography-Induced Erectile Dysfunction is increasingly documented in otherwise healthy men under 40. The brain becomes conditioned to screen-based, high-novelty stimulation and loses sensitivity to real partners — reversible upon cessation." },
-          { title: "Betrayal trauma", color: C.accent, body: "Discovery of a partner's hidden pornography use can produce trauma responses indistinguishable from infidelity trauma: hypervigilance, intrusive thoughts, loss of safety, and complex grief. Partners' pain is real and clinically recognized." },
-          { title: "Relationship quality decline", color: C.primary, body: "A 2019 study of 15,000 adults found habitual pornography users were 3x more likely to report marital unhappiness. Relationship satisfaction, communication quality, and sexual satisfaction all decline with increased use." },
-          { title: "Children & family impact", color: C.purple, body: "Children of addicted parents experience reduced parental presence, higher household tension, and earlier pornography exposure. Parental modeling is one of the strongest predictors of children's future use patterns." },
-        ].map(({ title, color, body }) => (
+          { title: "Unrealistic Expectations", icon: "🎭", color: C.accent, body: "Regular porn consumption creates distorted templates for sex and body image. Research (Sun et al., 2016) shows users develop increasingly unrealistic expectations of sexual performance and appearance, making real intimacy feel inadequate or disappointing by comparison." },
+          { title: "Emotional Withdrawal", icon: "🌫️", color: C.secondary, body: "Partners of porn users frequently report emotional unavailability, reduced affection, and a sense that their partner is 'elsewhere.' This emotional withdrawal mirrors patterns seen in partners of people with substance use disorders." },
+          { title: "Sexual Dysfunction (PIED)", icon: "⚡", color: C.warning, body: "Pornography-Induced Erectile Dysfunction is increasingly documented in otherwise healthy men under 40. The brain becomes conditioned to screen-based, high-novelty stimulation and loses sensitivity to real partners — reversible upon cessation." },
+          { title: "Betrayal Trauma", icon: "🔒", color: C.accent, body: "Discovery of a partner's hidden pornography use can produce trauma responses indistinguishable from infidelity trauma: hypervigilance, intrusive thoughts, loss of safety, and complex grief. Partners' pain is real and clinically recognized." },
+          { title: "Relationship Quality Decline", icon: "📉", color: C.primary, body: "A 2019 study of 15,000 adults found habitual pornography users were 3× more likely to report marital unhappiness. Relationship satisfaction, communication quality, and sexual satisfaction all decline with increased use." },
+          { title: "Children & Family Impact", icon: "👨‍👩‍👧", color: C.purple, body: "Children of addicted parents experience reduced parental presence, higher household tension, and earlier pornography exposure. Parental modeling is one of the strongest predictors of children's future use patterns." },
+        ].map(({ title, icon, color, body }) => (
           <Card key={title}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+              <span style={{ fontSize: "1.4rem" }}>{icon}</span>
               <h3 style={{ color, margin: 0, fontSize: "0.98rem", fontWeight: 700 }}>{title}</h3>
             </div>
             <p style={{ color: C.muted, margin: 0, fontSize: "0.865rem", lineHeight: 1.7 }}>{body}</p>
@@ -446,7 +447,7 @@ function RelationshipsPage() {
         ))}
       </div>
 
-      <ChartCard title="Partners&apos; reported experience" note="Survey data from partners of compulsive porn users. Source: AAMFT 2020; Harborth et al. 2019">
+      <ChartCard title="Partners' Reported Experience" note="Survey data from partners of compulsive porn users. Source: AAMFT 2020; Harborth et al. 2019">
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(190px,1fr))", gap: "1rem", marginTop: "0.5rem" }}>
           {[
             { stat: "70%", label: "feel 'not good enough'", color: C.accent },
@@ -458,7 +459,7 @@ function RelationshipsPage() {
               background: "rgba(255,255,255,0.03)", borderRadius: 10,
               padding: "1.2rem", textAlign: "center", border: `1px solid ${C.border}`,
             }}>
-              <div style={{ fontSize: "1.9rem", fontWeight: 800, color, fontFamily: "var(--font-playfair), serif" }}>{stat}</div>
+              <div style={{ fontSize: "1.9rem", fontWeight: 800, color, fontFamily: "'Playfair Display', serif" }}>{stat}</div>
               <div style={{ color: C.muted, fontSize: "0.78rem", marginTop: "0.3rem" }}>{label}</div>
             </div>
           ))}
@@ -471,9 +472,9 @@ function RelationshipsPage() {
         borderRadius: "0 12px 12px 0",
       }}>
         <p style={{ color: C.text, fontSize: "1.02rem", lineHeight: 1.75, fontStyle: "italic", margin: 0 }}>
-          &ldquo;The research is unambiguous: pornography use is not a victimless private act. It restructures how users
+          "The research is unambiguous: pornography use is not a victimless private act. It restructures how users
           relate to real people, creates unrealistic and often harmful expectations, and inflicts measurable
-          psychological damage on partners.&rdquo;
+          psychological damage on partners."
         </p>
         <p style={{ color: C.muted, fontSize: "0.83rem", margin: "0.8rem 0 0" }}>
           — Dr. Gail Dines, sociologist and author of <em>Pornland</em>
@@ -487,13 +488,13 @@ function RecoveryPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)" }}>
       <SectionHead
-        title="The path to recovery"
+        title="The Path to Recovery"
         sub="Recovery from pornography addiction is well-documented, achievable, and transformative. The same brain plasticity that enabled addiction enables full healing."
         color={C.warning}
       />
 
       <ChartCard
-        title="Brain recovery timeline"
+        title="Brain Recovery Timeline"
         note="Normalized improvement scores after cessation. Based on neurological recovery research and self-report studies. Week 1 shows a withdrawal dip before steady recovery."
       >
         <ResponsiveContainer width="100%" height={310}>
@@ -516,23 +517,23 @@ function RecoveryPage() {
             <YAxis tick={{ fill: C.muted, fontSize: 10 }} domain={[0, 100]} unit="%" />
             <Tooltip contentStyle={ttStyle} />
             <Legend wrapperStyle={{ color: C.muted, fontSize: "0.78rem" }} />
-            <Area type="monotone" dataKey="dop" name="Dopamine balance" stroke={C.primary} fill="url(#g-dop)" strokeWidth={2} />
-            <Area type="monotone" dataKey="mood" name="Mood / wellbeing" stroke={C.secondary} fill="url(#g-mood)" strokeWidth={2} />
-            <Area type="monotone" dataKey="focus" name="Focus / clarity" stroke={C.warning} fill="url(#g-focus)" strokeWidth={2} />
-            <Area type="monotone" dataKey="energy" name="Energy levels" stroke={C.purple} fill="url(#g-energy)" strokeWidth={2} />
+            <Area type="monotone" dataKey="dop" name="Dopamine Balance" stroke={C.primary} fill="url(#g-dop)" strokeWidth={2} />
+            <Area type="monotone" dataKey="mood" name="Mood / Wellbeing" stroke={C.secondary} fill="url(#g-mood)" strokeWidth={2} />
+            <Area type="monotone" dataKey="focus" name="Focus / Clarity" stroke={C.warning} fill="url(#g-focus)" strokeWidth={2} />
+            <Area type="monotone" dataKey="energy" name="Energy Levels" stroke={C.purple} fill="url(#g-energy)" strokeWidth={2} />
           </AreaChart>
         </ResponsiveContainer>
       </ChartCard>
 
       <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-        <h3 style={{ color: C.text, fontFamily: "var(--font-playfair), serif", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Stages of recovery</h3>
+        <h3 style={{ color: C.text, fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", marginBottom: "1.5rem" }}>Stages of Recovery</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {[
-            { timeframe: "Days 1-7", title: "Acute withdrawal", color: C.accent, body: "Heightened irritability, anxiety, difficulty concentrating, and strong cravings. The brain is recalibrating dopamine systems. This is the hardest phase — expect it and plan for it with accountability and environment changes." },
-            { timeframe: "Weeks 2-4", title: "Early recovery", color: C.warning, body: "Mood may fluctuate unpredictably (the 'flatline period'). Social awkwardness, reduced libido, and emotional numbness are common. The brain is growing new dopamine receptors — this is progress, not regression." },
-            { timeframe: "Months 2-3", title: "Active rewiring", color: C.primary, body: "Significant improvement in mood, focus, and natural motivation. Real-world pleasures begin feeling rewarding again. Neural pathways associated with porn weaken as healthy pathways strengthen." },
-            { timeframe: "Months 3-6", title: "Integration", color: C.secondary, body: "Emotional regulation improves markedly. Relationships deepen. Sexual function normalizes. Clarity about values and goals returns. Former triggers lose their power as new coping skills solidify." },
-            { timeframe: "Month 6+", title: "Long-term recovery", color: C.purple, body: "Sustained wellbeing, healthy intimacy, and resilience against relapse. Many report this as the best period of their adult lives. Regular mindfulness, exercise, and accountability maintain progress." },
+            { timeframe: "Days 1–7", title: "Acute Withdrawal", color: C.accent, body: "Heightened irritability, anxiety, difficulty concentrating, and strong cravings. The brain is recalibrating dopamine systems. This is the hardest phase — expect it and plan for it with accountability and environment changes." },
+            { timeframe: "Weeks 2–4", title: "Early Recovery", color: C.warning, body: "Mood may fluctuate unpredictably (the 'flatline period'). Social awkwardness, reduced libido, and emotional numbness are common. The brain is growing new dopamine receptors — this is progress, not regression." },
+            { timeframe: "Months 2–3", title: "Active Rewiring", color: C.primary, body: "Significant improvement in mood, focus, and natural motivation. Real-world pleasures begin feeling rewarding again. Neural pathways associated with porn weaken as healthy pathways strengthen." },
+            { timeframe: "Months 3–6", title: "Integration", color: C.secondary, body: "Emotional regulation improves markedly. Relationships deepen. Sexual function normalizes. Clarity about values and goals returns. Former triggers lose their power as new coping skills solidify." },
+            { timeframe: "Month 6+", title: "Long-Term Recovery", color: C.purple, body: "Sustained wellbeing, healthy intimacy, and resilience against relapse. Many report this as the best period of their adult lives. Regular mindfulness, exercise, and accountability maintain progress." },
           ].map(({ timeframe, title, color, body }, i) => (
             <div key={i} style={{
               display: "flex", gap: "1.5rem", alignItems: "flex-start",
@@ -558,18 +559,19 @@ function RecoveryPage() {
       </div>
 
       <Card>
-        <h3 style={{ color: C.text, fontFamily: "var(--font-playfair), serif", fontSize: "1.3rem", marginBottom: "1.5rem" }}>Evidence-based recovery strategies</h3>
+        <h3 style={{ color: C.text, fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", marginBottom: "1.5rem" }}>Evidence-Based Recovery Strategies</h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))", gap: "1rem" }}>
           {[
-            { title: "Content filtering", color: C.primary, desc: "Install router-level and device-level filters (OpenDNS, Covenant Eyes). Environmental control reduces relapse rates by 40%." },
-            { title: "Mindfulness practice", color: C.secondary, desc: "Daily meditation strengthens prefrontal control over impulsive behavior. Even 10 min/day shows measurable brain changes within 8 weeks." },
-            { title: "Exercise", color: C.warning, desc: "Aerobic exercise raises baseline dopamine and BDNF, directly counteracting reward system deficits. 30 min 4x/week is clinically supported." },
-            { title: "Accountability", color: C.accent, desc: "Structured accountability (partner, group, therapist) doubles recovery success rates. Isolation is the primary relapse risk factor." },
-            { title: "Journaling", color: C.purple, desc: "Processing emotional triggers through writing reduces compulsive behavior. Identify the cycle: trigger → craving → ritual → use → shame." },
-            { title: "Therapy (CBT/ACT)", color: C.primary, desc: "Cognitive Behavioral Therapy and Acceptance & Commitment Therapy have strong evidence bases for treating behavioral addictions." },
-          ].map(({ title, color, desc }) => (
+            { icon: "🛡️", title: "Content Filtering", color: C.primary, desc: "Install router-level and device-level filters (OpenDNS, Covenant Eyes). Environmental control reduces relapse rates by 40%." },
+            { icon: "🧘", title: "Mindfulness Practice", color: C.secondary, desc: "Daily meditation strengthens prefrontal control over impulsive behavior. Even 10 min/day shows measurable brain changes within 8 weeks." },
+            { icon: "💪", title: "Exercise", color: C.warning, desc: "Aerobic exercise raises baseline dopamine and BDNF, directly counteracting reward system deficits. 30 min 4×/week is clinically supported." },
+            { icon: "🤝", title: "Accountability", color: C.accent, desc: "Structured accountability (partner, group, therapist) doubles recovery success rates. Isolation is the primary relapse risk factor." },
+            { icon: "📝", title: "Journaling", color: C.purple, desc: "Processing emotional triggers through writing reduces compulsive behavior. Identify the cycle: trigger → craving → ritual → use → shame." },
+            { icon: "🏥", title: "Therapy (CBT/ACT)", color: C.primary, desc: "Cognitive Behavioral Therapy and Acceptance & Commitment Therapy have strong evidence bases for treating behavioral addictions." },
+          ].map(({ icon, title, color, desc }) => (
             <div key={title} style={{ padding: "1.1rem", background: "rgba(255,255,255,0.025)", borderRadius: 10, border: `1px solid ${C.border}` }}>
               <div style={{ display: "flex", gap: "0.6rem", alignItems: "center", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "1.2rem" }}>{icon}</span>
                 <span style={{ color, fontWeight: 700, fontSize: "0.93rem" }}>{title}</span>
               </div>
               <p style={{ color: C.muted, margin: 0, fontSize: "0.81rem", lineHeight: 1.6 }}>{desc}</p>
@@ -585,18 +587,18 @@ function HelpPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)" }}>
       <SectionHead
-        title="Get help"
+        title="Get Help"
         sub="You don't have to face this alone. Verified resources, hotlines, and communities that have helped thousands."
         color={C.purple}
       />
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(275px,1fr))", gap: "1.2rem", marginBottom: "2.5rem" }}>
         {[
-          { title: "SAA — Sex Addicts Anonymous", url: "saa.org", type: "12-step / free", color: C.primary, desc: "Worldwide fellowship with in-person and online meetings. No cost. Follows a 12-step recovery model adapted for sexual compulsivity." },
+          { title: "SAA — Sex Addicts Anonymous", url: "saa.org", type: "12-Step / Free", color: C.primary, desc: "Worldwide fellowship with in-person and online meetings. No cost. Follows a 12-step recovery model adapted for sexual compulsivity." },
           { title: "Your Brain On Porn (YBOP)", url: "yourbrainonporn.com", type: "Educational", color: C.secondary, desc: "The largest research repository on pornography's neurological effects. Thousands of recovery accounts and peer-reviewed study summaries." },
-          { title: "NoFap Community", url: "reddit.com/r/NoFap", type: "Peer support / free", color: C.warning, desc: "Over 1.1 million members sharing recovery journeys, strategies, and support. Daily accountability threads available." },
-          { title: "Psychology Today Therapist Finder", url: "psychologytoday.com/us/therapists", type: "Professional help", color: C.accent, desc: "Search for therapists specializing in sexual compulsivity and behavioral addiction. Filter by insurance, cost, and specialization." },
-          { title: "Fortify Program", url: "joinfortify.com", type: "Structured program", color: C.purple, desc: "Science-based online recovery program with tracking, education, and community. Free basic access, premium features available." },
-          { title: "SAMHSA Helpline", url: "1-800-662-4357", type: "Crisis hotline", color: C.primary, desc: "Free, confidential, 24/7 treatment referral and information for mental health and behavioral addiction issues. Nationwide (US)." },
+          { title: "NoFap Community", url: "reddit.com/r/NoFap", type: "Peer Support / Free", color: C.warning, desc: "Over 1.1 million members sharing recovery journeys, strategies, and support. Daily accountability threads available." },
+          { title: "Psychology Today Therapist Finder", url: "psychologytoday.com/us/therapists", type: "Professional Help", color: C.accent, desc: "Search for therapists specializing in sexual compulsivity and behavioral addiction. Filter by insurance, cost, and specialization." },
+          { title: "Fortify Program", url: "joinfortify.com", type: "Structured Program", color: C.purple, desc: "Science-based online recovery program with tracking, education, and community. Free basic access, premium features available." },
+          { title: "SAMHSA Helpline", url: "1-800-662-4357", type: "Crisis Hotline", color: C.primary, desc: "Free, confidential, 24/7 treatment referral and information for mental health and behavioral addiction issues. Nationwide (US)." },
         ].map(({ title, url, type, color, desc }) => (
           <div key={title} style={{
             background: C.bgCard, borderRadius: 12, padding: "1.5rem",
@@ -619,7 +621,7 @@ function HelpPage() {
         borderRadius: 16, padding: "2.5rem",
         border: "1px solid rgba(6,214,160,0.2)", textAlign: "center",
       }}>
-        <h3 style={{ color: C.text, fontFamily: "var(--font-playfair), serif", fontSize: "1.7rem", margin: "0 0 1rem" }}>You are not broken</h3>
+        <h3 style={{ color: C.text, fontFamily: "'Playfair Display', serif", fontSize: "1.7rem", margin: "0 0 1rem" }}>You Are Not Broken</h3>
         <p style={{ color: C.muted, maxWidth: 540, margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.75 }}>
           Pornography addiction is a neurological condition, not a moral failing. The same brain plasticity that made you
           vulnerable to addiction is exactly what enables full recovery. Thousands of people achieve lasting freedom every year.
@@ -630,24 +632,23 @@ function HelpPage() {
 }
 
 function DonatePage() {
-  const [selected, setSelected] = useState("$25");
-  const amounts = ["$5", "$10", "$25", "$50", "$100", "Custom"];
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)", maxWidth: 700, margin: "0 auto" }}>
       <SectionHead
-        title="Support this work"
+        title="Support This Work"
         sub="This website is maintained entirely through donations. Every contribution funds awareness campaigns, research compilation, and free resources."
       />
       {[
-        { title: "Fund awareness campaigns", desc: "Social media, search advertising, and school partnership programs to reach those who need this information most." },
-        { title: "Research compilation", desc: "Curating, translating, and presenting the latest peer-reviewed science in accessible, shareable formats." },
-        { title: "Support resources", desc: "Maintaining free guides, recovery tools, and connections to professional help at no cost to users." },
-      ].map(({ title, desc }) => (
+        { icon: "📢", title: "Fund Awareness Campaigns", desc: "Social media, search advertising, and school partnership programs to reach those who need this information most." },
+        { icon: "🔬", title: "Research Compilation", desc: "Curating, translating, and presenting the latest peer-reviewed science in accessible, shareable formats." },
+        { icon: "🤝", title: "Support Resources", desc: "Maintaining free guides, recovery tools, and connections to professional help at no cost to users." },
+      ].map(({ icon, title, desc }) => (
         <div key={title} style={{
           display: "flex", gap: "1.2rem", padding: "1.2rem",
           background: C.bgCard, borderRadius: 12, marginBottom: "1rem",
           border: `1px solid ${C.border}`, alignItems: "flex-start",
         }}>
+          <span style={{ fontSize: "1.7rem", flexShrink: 0 }}>{icon}</span>
           <div>
             <h4 style={{ color: C.text, margin: "0 0 0.3rem", fontWeight: 700 }}>{title}</h4>
             <p style={{ color: C.muted, margin: 0, fontSize: "0.875rem", lineHeight: 1.55 }}>{desc}</p>
@@ -655,29 +656,13 @@ function DonatePage() {
         </div>
       ))}
       <Card style={{ marginTop: "2rem", textAlign: "center" }}>
-        <h3 style={{ color: C.text, fontFamily: "var(--font-playfair), serif", fontSize: "1.4rem", margin: "0 0 1.5rem" }}>Choose an amount</h3>
-        <div style={{ display: "flex", gap: "0.7rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "1.5rem" }}>
-          {amounts.map(amt => (
-            <button key={amt} onClick={() => setSelected(amt)} style={{
-              background: selected === amt ? C.primary : "transparent",
-              color: selected === amt ? "#07090f" : C.text,
-              border: `1px solid ${selected === amt ? C.primary : C.border}`,
-              padding: "0.65rem 1.3rem", borderRadius: 8,
-              fontFamily: "inherit", fontWeight: 600, fontSize: "0.9rem", cursor: "pointer",
-              transition: "all 0.15s",
-            }}>{amt}</button>
-          ))}
-        </div>
-        <button style={{
+        <button onClick={() => window.open("https://d797fa8c-9824-43dc-8778-4603c305267b.paylinks.godaddy.com/2a8db1b6-5fa2-4ca7-9a3a-7f1", "_blank")} style={{
           background: "linear-gradient(135deg,#06d6a0,#3a86ff)", color: "#07090f",
           border: "none", padding: "1rem 2.5rem",
           borderRadius: 10, fontFamily: "inherit",
           fontWeight: 800, fontSize: "1rem", cursor: "pointer",
           width: "100%", maxWidth: 320, letterSpacing: "0.02em",
-        }}>Donate securely →</button>
-        <p style={{ color: C.muted, fontSize: "0.76rem", marginTop: "1rem" }}>
-          Secure payment via Stripe. Your information is never shared or sold.
-        </p>
+        }}>Donate Securely →</button>
       </Card>
     </div>
   );
@@ -686,72 +671,75 @@ function DonatePage() {
 // --- NAVBAR & APP ---
 const NAV = [
   { id: "home", label: "Home" },
-  { id: "science", label: "The science" },
+  { id: "science", label: "The Science" },
   { id: "statistics", label: "Statistics" },
   { id: "relationships", label: "Relationships" },
   { id: "recovery", label: "Recovery" },
-  { id: "help", label: "Get help" },
-  { id: "donate", label: "Donate" },
+  { id: "help", label: "Get Help" },
+  { id: "donate", label: "❤️ Donate" },
 ];
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const pages: Record<string, React.ComponentType<{ setPage: (page: string) => void }> | React.ComponentType> = { 
-    home: HomePage, 
-    science: SciencePage, 
-    statistics: StatisticsPage, 
-    relationships: RelationshipsPage, 
-    recovery: RecoveryPage, 
-    help: HelpPage, 
-    donate: DonatePage 
-  };
+  const pages = { home: HomePage, science: SciencePage, statistics: StatisticsPage, relationships: RelationshipsPage, recovery: RecoveryPage, help: HelpPage, donate: DonatePage };
   const PageComponent = pages[page] || HomePage;
 
   return (
-    <div style={{ background: C.bg, minHeight: "100vh", fontFamily: "var(--font-dm-sans), sans-serif", color: C.text }}>
-      <nav style={{
-        position: "sticky", top: 0, zIndex: 100,
-        background: "rgba(7,9,15,0.93)", backdropFilter: "blur(14px)",
-        borderBottom: `1px solid ${C.border}`,
-        padding: "0 clamp(1rem,4vw,3rem)",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        height: 58, gap: "0.5rem",
-      }}>
-        <button onClick={() => setPage("home")} style={{
-          background: "none", border: "none", cursor: "pointer",
-          fontFamily: "var(--font-playfair), serif",
-          fontSize: "1.05rem", fontWeight: 700, color: C.text, flexShrink: 0,
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{background:#07090f;font-family:'DM Sans',sans-serif;color:#f0f4fc;}
+        ::-webkit-scrollbar{width:5px;}
+        ::-webkit-scrollbar-track{background:#07090f;}
+        ::-webkit-scrollbar-thumb{background:#1e2a3a;border-radius:3px;}
+      `}</style>
+      <div style={{ background: C.bg, minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: C.text }}>
+        <nav style={{
+          position: "sticky", top: 0, zIndex: 100,
+          background: "rgba(7,9,15,0.93)", backdropFilter: "blur(14px)",
+          borderBottom: `1px solid ${C.border}`,
+          padding: "0 clamp(1rem,4vw,3rem)",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          height: 58, gap: "0.5rem",
         }}>
-          <span style={{ color: C.primary }}>◆</span> PornAddictionFacts
-        </button>
-        <div style={{ display: "flex", gap: "0.15rem", flexWrap: "wrap", justifyContent: "flex-end" }}>
-          {NAV.slice(1).map(({ id, label }) => (
-            <button key={id} onClick={() => setPage(id)} style={{
-              background: "none", border: "none", cursor: "pointer",
-              color: page === id ? C.primary : C.muted,
-              fontFamily: "inherit", fontSize: "0.83rem", fontWeight: 500,
-              padding: "0.4rem 0.7rem", borderRadius: 6,
-              borderBottom: page === id ? `2px solid ${C.primary}` : "2px solid transparent",
-              transition: "all 0.15s", letterSpacing: "0.01em",
-            }}>{label}</button>
-          ))}
-        </div>
-      </nav>
+          <button onClick={() => setPage("home")} style={{
+            background: "none", border: "none", cursor: "pointer",
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "1.05rem", fontWeight: 700, color: C.text, flexShrink: 0,
+          }}>
+            <span style={{ color: C.primary }}>◆</span> PornAddictionFacts
+          </button>
+          <div style={{ display: "flex", gap: "0.15rem", flexWrap: "wrap", justifyContent: "flex-end" }}>
+            {NAV.slice(1).map(({ id, label }) => (
+              <button key={id} onClick={() => setPage(id)} style={{
+                background: "none", border: "none", cursor: "pointer",
+                color: page === id ? C.primary : C.muted,
+                fontFamily: "inherit", fontSize: "0.83rem", fontWeight: 500,
+                padding: "0.4rem 0.7rem", borderRadius: 6,
+                borderBottom: page === id ? `2px solid ${C.primary}` : "2px solid transparent",
+                transition: "all 0.15s", letterSpacing: "0.01em",
+              }}>{label}</button>
+            ))}
+          </div>
+        </nav>
 
-      <main style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <PageComponent setPage={setPage} />
-      </main>
+        <main style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <PageComponent setPage={setPage} />
+        </main>
 
-      <footer style={{ borderTop: `1px solid ${C.border}`, padding: "2rem clamp(2rem,6vw,4rem)", textAlign: "center" }}>
-        <p style={{ color: C.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
-          This website is for educational and awareness purposes only. Content is based on peer-reviewed research and clinical literature.<br />
-          If you are in crisis, please contact the SAMHSA helpline at <strong style={{ color: C.text }}>1-800-662-4357</strong> or your local emergency services.
-        </p>
-        <p style={{ color: C.border, fontSize: "0.73rem", marginTop: "0.75rem" }}>
-          © 2024 PornAddictionFacts.org · Built for public health awareness
-        </p>
-      </footer>
-    </div>
+        <footer style={{ borderTop: `1px solid ${C.border}`, padding: "2rem clamp(2rem,6vw,4rem)", textAlign: "center" }}>
+          <p style={{ color: C.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
+            This website is for educational and awareness purposes only. Content is based on peer-reviewed research and clinical literature.<br />
+            If you are in crisis, please contact the SAMHSA helpline at <strong style={{ color: C.text }}>1-800-662-4357</strong> or your local emergency services.
+          </p>
+          <p style={{ color: C.border, fontSize: "0.73rem", marginTop: "0.75rem" }}>
+            © 2024 PornAddictionFacts.org · Built for public health awareness
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
