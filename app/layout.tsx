@@ -18,7 +18,6 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Porn Addiction Facts - Evidence-Based Awareness',
   description: 'Research-backed information about pornography addiction, its effects on the brain and relationships, and the path to recovery.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
