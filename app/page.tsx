@@ -851,7 +851,7 @@ export default function App() {
   const [page, setPage] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const pages = { home: HomePage, science: SciencePage, statistics: StatisticsPage, relationships: RelationshipsPage, recovery: RecoveryPage, mystory: MyStoryPage, help: HelpPage, donate: DonatePage };
+  const pages = { home: HomePage, science: SciencePage, statistics: StatisticsPage, relationships: RelationshipsPage, recovery: RecoveryPage, mystory: RealStoriesPage, help: HelpPage, donate: DonatePage };
   const PageComponent = pages[page] || HomePage;
 
   return (
