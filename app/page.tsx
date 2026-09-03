@@ -686,10 +686,10 @@ function MyStoryPage() {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: "2rem", fontWeight: 900, color: "#07090f",
           fontFamily: "'Playfair Display', serif",
-        }}>B</div>
+        }}>◆</div>
         <div>
-          <h3 style={{ color: C.text, margin: "0 0 0.3rem", fontFamily: "'Playfair Display', serif", fontSize: "1.4rem" }}>Ben</h3>
-          <p style={{ color: C.muted, margin: 0, fontSize: "0.9rem" }}>Bay Area, California &nbsp;·&nbsp; Recovered &nbsp;·&nbsp; Advocate</p>
+          <h3 style={{ color: C.text, margin: "0 0 0.3rem", fontFamily: "'Playfair Display', serif", fontSize: "1.4rem" }}>A Recovered Voice</h3>
+          <p style={{ color: C.muted, margin: 0, fontSize: "0.9rem" }}>Recovered &nbsp;·&nbsp; Advocate</p>
         </div>
       </div>
 
@@ -697,27 +697,27 @@ function MyStoryPage() {
       {[
         {
           icon: "🌱", color: C.secondary, title: "How It Started",
-          body: `I was 12 when I first came across it. I wasnt even looking for it, it just kind of showed up. I remember thinking it was no big deal, just something I stumbled on and that was that. Nobody in my life was talking about this stuff so I genuinely had no idea what I was getting myself into.
+          body: `I was 12 when I first saw it. I wasn't even looking for it, honestly, it just popped up one day and I clicked. Didn't think much of it at the time. Nobody around me ever talked about this stuff so I had no idea it would turn into anything.
 
-But it kept pulling me back. A few weeks turned into months and by the time I was 13 it already felt like something I couldnt just put down. I would go a few days without it and feel good about myself and then just fall right back into it. That kept happening over and over and I started to feel really bad about myself because of it.`,
+But I kept going back. A few weeks turned into months and by 13 it was just something I did, almost without thinking about it. I'd stop for a few days, feel okay about myself, then end up back at it again. Happened so many times I started to feel like something was wrong with me.`,
         },
         {
           icon: "🌊", color: C.accent, title: "What It Did To Me",
-          body: `Honestly the effects snuck up on me. I didnt notice right away. But after a while I could tell something was off. I was more in my head, more anxious, had a harder time focusing in class. Talking to people felt awkward in a way it never used to. Eye contact felt weird. I just felt kind of checked out from everything around me.
+          body: `I didn't notice the effects right away, they kind of built up slowly. I was more anxious than usual, couldn't focus as well in school, and talking to people started to feel harder than it used to. Eye contact felt like something I had to think about instead of something that just happened.
 
-The thing that got to me the most was the shame. It was just always there in the background. And because I couldnt talk to anyone about it I carried it around by myself. I genuinely thought I was the only one dealing with this. Like everyone else had it together and I was the only one struggling with something this embarrassing.`,
+The worst part honestly was just feeling ashamed all the time. Not one big moment of it, just this background feeling that never really went away. And I never told anyone so I just sat with it by myself for years. I really thought I was the only person my age dealing with this.`,
         },
         {
           icon: "⚡", color: C.warning, title: "The Turning Point",
-          body: `What actually changed things for me was finding out the science behind it. I started reading about what it actually does to your brain, the dopamine stuff, the way it rewires how you respond to things. And something about that just clicked for me. It wasnt that I was weak or a bad person. My brain was just reacting the way any brain would react to that kind of constant overstimulation.
+          body: `What actually helped was reading about the brain stuff. How dopamine works, why it gets harder to stop the more you do it, all of that. Once I understood it wasn't just me being weak or messed up, and that it was just my brain reacting to something it wasn't built to handle, I stopped hating myself over it as much.
 
-That took so much weight off. I started actually doing something about it after that. I put filters on my phone and laptop, started working out, started writing stuff down when I felt the urge to relapse. I found some online communities where other guys were going through the same thing and that helped a lot too. Just knowing other people understood it.`,
+That's when I actually started doing something instead of just feeling bad. Put filters on my phone, started running in the mornings, wrote stuff down when I felt like relapsing. Found some people online dealing with the same thing which helped more than I expected. Just knowing it wasn't only me.`,
         },
         {
           icon: "🌟", color: C.primary, title: "Where I Am Now",
-          body: `It wasnt easy and I did relapse a few times. I wont pretend it was this clean straight line to being fixed. But over time things got better. The urges got less intense. My focus came back. I started actually caring about stuff again, school, hanging out with friends, just being a normal person without this thing weighing on me all the time.
+          body: `I relapsed a bunch of times along the way, it wasn't some straight line to being fine. But over time it got easier. The urges weren't as strong. I could focus again. I started caring about normal stuff again, school, friends, just being a person without this thing hanging over me constantly.
 
-I made this site because when I was going through the worst of it I couldnt find anything that just laid it all out honestly. All the research is buried in papers nobody reads and the conversations online are scattered everywhere. I wanted to put it all in one place in a way that actually makes sense to a regular person. If youre reading this and you relate to any of it, just know it does get better. It really does.`,
+I made this site because back when things were bad I couldn't find anything that just explained it straight, without being buried in research papers or scattered across random forums. So I put it all here. If any of this sounds like you, it does get better. I'm living proof of that.`,
         },
       ].map(({ icon, color, title, body }, i) => (
         <div key={i} style={{ marginBottom: "2.5rem" }}>
@@ -905,7 +905,7 @@ export default function App() {
             If you are in crisis, please contact the SAMHSA helpline at <strong style={{ color: C.text }}>1-800-662-4357</strong> or your local emergency services.
           </p>
           <p style={{ color: C.border, fontSize: "0.73rem", marginTop: "0.75rem" }}>
-            © 2024 PornAddictionFacts.org · Built for public health awareness
+            © 2026 PornAddictionFacts.org · Built for public health awareness · Created by Ben
           </p>
         </footer>
       </div>
