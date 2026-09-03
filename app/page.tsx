@@ -668,8 +668,8 @@ function DonatePage() {
   );
 }
 
-// --- MY STORY PAGE ---
-function MyStoryPage() {
+// --- Real Stories PAGE ---
+function RealStoriesPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)", maxWidth: 800, margin: "0 auto" }}>
       <SectionHead title="Real Stories" sub="A personal account of addiction, recovery, and why this website exists." color={C.warning} />
@@ -842,7 +842,7 @@ const NAV = [
   { id: "statistics", label: "Statistics" },
   { id: "relationships", label: "Relationships" },
   { id: "recovery", label: "Recovery" },
-  { id: "mystory", label: "My Story" },
+  { id: "mystory", label: "Real Stories" },
   { id: "help", label: "Get Help" },
   { id: "donate", label: "❤️ Donate" },
 ];
