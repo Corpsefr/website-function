@@ -672,7 +672,7 @@ function DonatePage() {
 function MyStoryPage() {
   return (
     <div style={{ padding: "clamp(2rem,6vw,4rem)", maxWidth: 800, margin: "0 auto" }}>
-      <SectionHead title="My Story" sub="A personal account of addiction, recovery, and why this website exists." color={C.warning} />
+      <SectionHead title="Real Stories" sub="A personal account of addiction, recovery, and why this website exists." color={C.warning} />
 
       {/* Intro banner */}
       <div style={{
